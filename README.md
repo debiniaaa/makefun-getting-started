@@ -233,6 +233,94 @@ belong to, your own projects — is the whole idea. This guide is doing exactly 
 | 6 | Run the local check, fix everything it reports, then submit. |
 | 7 | Check your entry status. Fix and resubmit if needed — then go find your next bounty. |
 
+## Practical tips for beginners
+
+- **Read the whole `RULES.txt` before building, not after.** Ten minutes of reading
+  saves a rejected submission, and a refused submission still uses up part of your
+  daily limit.
+- **Run the local check before every submission.** `makefun check` runs the same
+  pre-submit checks the site runs. Green locally does not guarantee acceptance, but
+  red locally guarantees a wasted attempt if you submit anyway.
+- **Commit little and often.** If your machine or session dies mid-build, pushed
+  commits survive. Uncommitted work does not.
+- **Keep your agent session alive in one place.** The transcripts are part of the
+  entry. Building half in one chat and half in another, then uploading only one,
+  makes the authorship checks fail.
+- **Revise, don't restart.** A draft followed by a genuine improvement pass is both
+  better writing and what the transcript checks expect to see.
+- **Watch the clock in UTC.** Deadlines on make.fun are stated in UTC. Convert them
+  to your timezone once, write the local time down, and submit well before it.
+- **One bounty done properly beats five half-finished.** An unfinished entry earns
+  exactly the same as no entry: nothing.
+
+## Common mistakes and troubleshooting
+
+**"My entry was rejected and I don't know why."**
+Run `node cli/makefun.mjs status` — every failed check is listed with its fix.
+Rejections name the exact problem; fix that problem, not a guessed one, and resubmit
+before the deadline.
+
+**"My agent session started before the bounty opened."**
+That session cannot be entered, and editing its timestamps is not allowed. Start a
+new session after the opening and rebuild there. This is annoying but absolute.
+
+**"The bundle command wrote nothing."**
+That is deliberate: `bundle` refuses to write a bundle while part of the run record
+is missing, and it prints which flag supplies the missing part — a system prompt
+file, an effort level, the MCP list, or the opening prompt. Add what it names and
+run it again.
+
+**"GitHub shows the wrong README on my repository page."**
+You probably have a `.github/README.md`. GitHub displays that file in place of the
+root `README.md`, and make.fun refuses entries where it shadows the guide. Delete
+the `.github` copy so the root guide is the one on display.
+
+**"My referral link isn't crediting signups."**
+Check three things: the code in your link matches the code on your Referrals tab
+exactly; the visitor actually created the account while your code was bound (first
+touch wins for 60 days, so an earlier link from someone else may already hold that
+browser); and the signup was genuine activity — idle, bot or same-network accounts
+are filtered out and never count.
+
+**"Do I need crypto experience or money to start?"**
+No. Creating an account is free, most bounties are free to enter, and you only need
+a Solana wallet when there is a prize to pay into it. Never pay an entry fee you
+have not read about on the bounty page itself.
+
+## Frequently asked questions
+
+**Is make.fun free to use?**
+Yes. Accounts are free, and most bounties charge no entry fee. A bounty that does
+charge says so clearly on its own page, and the fee goes into that bounty's prize.
+
+**Do I need to be a programmer?**
+You need to be able to steer an AI coding agent and judge its output: pick a task,
+read the rules, review the result. The agent writes the code. Complete beginners
+succeed most often on writing, design and growth bounties like this one, where the
+deliverable is a guide rather than a program.
+
+**How and when do I get paid if I win?**
+Prizes are USDC on Solana. Some bounties lock the prize in an on-chain escrow that
+winners claim to the wallet that signed their entry; others pay from the platform's
+reward wallet after you submit payout details. Either way, the bounty page states
+which, claims are screened automatically, and a prize must be claimed within the
+window the rules give (7 days where the reward-wallet route applies).
+
+**What are transcripts, and why does make.fun collect them?**
+They are the session logs your AI agent's harness writes while it works. make.fun
+matches them against your entry's files to confirm your own agent built it. The kit
+strips credentials, email addresses and home paths before upload, and you can add
+your own redactions with `bundle --redact`.
+
+**Can I enter the same bounty more than once?**
+You can submit repeatedly until the deadline, within the bounty's limits — for this
+bounty, at most 5 submissions per UTC day and 10 in total, and refused attempts
+count. Your most recent valid submission is the entry that gets scored.
+
+**Can I work as a team?**
+Yes — a team enters under one person's account and splits any prize between
+themselves. One account per person still applies.
+
 ## Official resources
 
 - [make.fun](https://make.fun) — the bounty board itself
